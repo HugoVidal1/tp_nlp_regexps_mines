@@ -35,8 +35,8 @@ chambre_re = re.compile(
 	r')', re.UNICODE
 )
 
-publication_re = re.compile(r"(?P<publication>Publié\sau.*?)\n")#, re.DOTALL)
-formation_re = re.compile(r"(?P<formation>Formation restreinte.*?)\n")#, re.DOTALL)
+publication_re = re.compile(r"(?P<publication>Publié\sau.*?)\n")
+formation_re = re.compile(r"(?P<formation>Formation restreinte.*?)\n")
 ecli_re = re.compile(r"<p>(?P<ecli>ECLI:.*?)</p>") # TODO
 
 # () : groupe
