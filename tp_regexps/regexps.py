@@ -34,6 +34,16 @@ chambre_re = re.compile(
 	r'|Troisième\schambre\scivile'
 	r')', re.UNICODE
 )
-publication_re = None  # TODO
-formation_re = None  # TODO
-ecli_re = None  # TODO
+
+publication_re = re.compile(r"(?P<publication>Publié\sau.*?)\n", re.DOTALL)
+formation_re = re.compile(r"(?P<formation>Formation restreinte.*?)\n", re.DOTALL)
+ecli_re = re.compile(r"<p>(?P<ecli>ECLI:.*?)</p>") # TODO
+
+# () : groupe
+# (?P<ecli> ...) définit le groupe <ecli>. Permet de donner un nom permet de réutiliser le groupe just en l'appelant
+# . : N'importe quel caractère
+# * : caractère précédent répété 0 ou N fois.
+# ? : O ou 1 caractère après ou après une étoile = mode frugal (non glouton) fait le check a chaque carctère puis avance d'un caractère si l'expression régulière n'est pas matchée
+#  .compile : génère un automate 
+# \s : caractère espace
+# + : 1 ou N fois

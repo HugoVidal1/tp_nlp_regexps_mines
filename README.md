@@ -18,7 +18,7 @@ pip install -e .
 
 ## Exercice:  extraction de données structurées
 
-Afin de faciliter votre travail, 120 décisions en HTML ont été récupérées sur le site Judilibre, et une première structuration partielle a été faite, dans le répertoire `data/ccass`, où pour chaque fichier HTML, un fichier JSON correspondant représente les données structurées (partiellemen). Le premier exemple est structuré complètement, pour vous donner un exemple de ce qu'il faut obtenir: `data/ccass/6757dc458b75c64649d25972.html` donnant `data/ccass/6757dc458b75c64649d25972.json`.
+Afin de faciliter votre travail, 120 décisions en HTML ont été récupérées sur le site Judilibre, et une première structuration partielle a été faite, dans le répertoire `data/ccass`, où pour chaque fichier HTML, un fichier JSON correspondant représente les données structurées (partiellement). Le premier exemple est structuré complètement, pour vous donner un exemple de ce qu'il faut obtenir: `data/ccass/6757dc458b75c64649d25972.html` donnant `data/ccass/6757dc458b75c64649d25972.json`.
 
 Grâce à des expressions régulières, modifiez la méthode `from_html` de la classe `Decision` dans le fichier `tp_regexps/decision.py` pour compléter l'extraction des différents éléments. Il faudra également compléter et créer les expressions régulières correspondantes dans `tp_regexps/regexps.py`.
 
@@ -54,7 +54,7 @@ header_re = re.compile(r'<div\s+class="decision-header">(?P<header>.*?)</div>', 
 Affichage du résultats pour toutes les décisions, et détermination de tous les cas sur les 120 décisions pour la chambre:
 
 ```bash
-(tp1) gasilber@roya tp_nlp_regexps_mines % get_judilibre parse_html_decisions tp_regexps/data/ccass | grep 'h4-like">' | sort | uniq
+(tp1) gasilber@roya tp_nlp_regexps_mines % parse_judilibre parse_html_decisions tp_regexps/data/ccass | grep 'h4-like">' | sort | uniq
           <p class="h4-like">Chambre commerciale financière et économique
           <p class="h4-like">Chambre criminelle
           <p class="h4-like">Chambre sociale

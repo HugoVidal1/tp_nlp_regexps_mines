@@ -40,12 +40,12 @@ def main():
                     print(f"skip {id}")
                     continue
                 html_filename = os.path.join(path, filename)
-                with open(html_filename, "r") as f:
+                with open(html_filename, "r", encoding="utf-8") as f: #with open(html_filename, "r") as f:
                     html_data = f.read()
                 html_decision = Decision.from_html(id, html_data)
                 json_filename = Path(path) / f"{id}.json"
                 if not os.path.exists(json_filename) or args.force:
-                    with open(json_filename, "w") as f:
+                    with open(json_filename, "w",encoding="utf-8") as f:
                         f.write(html_decision.to_json())
                         print(f"wrote to {json_filename}")
     elif args.operation == "read_decision":
@@ -62,7 +62,7 @@ def main():
         if path is None:
             print("ERROR: missing decision path", file=sys.stderr)
             return 1
-        with open(path, "r") as f:
+        with open(path, "r", encoding="utf-8") as f: #with open(path, "r") as f:
             html_data = f.read()
         id = os.path.basename(path)[:-5]
         html_decision = Decision.from_html(id, html_data)
@@ -75,7 +75,7 @@ def main():
         for filename in os.listdir(path):
             if filename.endswith(".html"):
                 html_path = os.path.join(path, filename)
-                with open(html_path, "r") as f:
+                with open(html_path, "r", encoding="utf-8") as f: #with open(html_path, "r") as f:
                     html_data = f.read()
                 id = filename[:-5]
                 html_decision = Decision.from_html(id, html_data)

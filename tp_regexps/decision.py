@@ -86,7 +86,9 @@ class Decision(object):
 
     @staticmethod
     def __get_ecli(data: str):
-        # TODO
+        m = regexps.ecli_re.search(data)
+        if m:
+            return m.group("ecli")
         return None
 
     @staticmethod
@@ -105,12 +107,16 @@ class Decision(object):
 
     @staticmethod
     def __get_publication(data: str):
-        # TODO
+        m = regexps.publication_re.search(data)
+        if m:
+            return m.group("publication")
         return None
 
     @staticmethod
     def __get_formation(data: str):
-        # TODO
+        m = regexps.formation_re.search(data)
+        if m:
+            return m.group("formation")
         return None
 
     @staticmethod
@@ -135,14 +141,20 @@ class Decision(object):
     def from_html(cls, id: str, html: str):
         d = cls(id=id)
         header = cls.__get_header(html)
-        #print(header)
+        #print("DEBUG:", id, flush=True)
+        #print("DEBUG:", header, flush=True)
+        print(header)
         d.chamber = cls.__get_chambre(header)
-        # TODO d.ecli = cls.__get_ecli(header)
-        assert d.chamber is not None
-        # TODO d.publication = cls.__get_publication(header) or None
-        # TODO d.formation = cls.__get_formation(header) or None
-        #title = cls.__get_title(html)
-        #if title:
+        d.ecli = cls.__get_ecli(header)
+        # print("DEBUG:", d.chamber, flush=True)
+        # print("DEBUG:", d.ecli, flush=True)
+        #assert d.chamber is not None
+        d.publication = cls.__get_publication(header) or None
+        # print("DEBUG:", d.publication, flush=True)
+        d.formation = cls.__get_formation(header) or None
+        # print("DEBUG:", d.formation, flush=True)
+        # title = cls.__get_title(html)
+        # if title:
         #    d.number = title.group("number")
         #    day = int(title.group("day"))
         #    assert day > 0 and day < 31, day
